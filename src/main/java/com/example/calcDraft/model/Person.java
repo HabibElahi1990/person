@@ -1,14 +1,14 @@
 package com.example.calcDraft.model;
 
+import com.example.calcDraft.helper.NationalCode;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "PERSON_TBL")
+@Table(name = "PERSON_TBL",uniqueConstraints = {@UniqueConstraint(name = "nationalCodeUK",columnNames = "nationalCode")})
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,6 +19,7 @@ public class Person {
     @GeneratedValue
     private Integer id;
     private String name;
+    @NationalCode
     private String nationalCode;
     private Integer age;
 }
