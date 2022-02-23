@@ -19,7 +19,7 @@ public class PersonController {
     }
 
     @PostMapping("/add")
-    public Person addPerson(@RequestBody Person person) {
+    public Person addPerson(@Valid @RequestBody Person person) {
         return personService.addPerson(person);
     }
 
@@ -41,7 +41,7 @@ public class PersonController {
     }
 
     @GetMapping("/findByNationalCode")
-    public Person findByNationalCode(@RequestParam String nationalCode){
+    public Person findByNationalCode(@RequestParam(required = false) String nationalCode){
         return personService.getPersonByNationalCode(nationalCode);
     }
 

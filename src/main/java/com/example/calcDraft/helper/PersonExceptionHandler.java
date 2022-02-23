@@ -5,31 +5,35 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import java.sql.SQLException;
+import java.util.Date;
+
 
 @ControllerAdvice
 public class PersonExceptionHandler {
 
+
     @ExceptionHandler(value = {Exception.class})
-    public ResponseEntity<Object> exceptionHandler(Exception e) {
-        Message message = new Message(e.getMessage(), HttpStatus.BAD_REQUEST);
-        return new ResponseEntity<>(message.toString(), HttpStatus.BAD_REQUEST);
+    public ResponseEntity<Object> exceptionHandler(IllegalArgumentException e) {
+        Message message = new Message("dadach requestted eshkal dare", new Date());
+        return new ResponseEntity<>(message.toString(), HttpStatus.NOT_EXTENDED);
     }
 }
 
 class Message {
     private String error;
-    private HttpStatus errorCode;
+    private Date errorDate;
 
-    Message(String error, HttpStatus errorCode) {
+    Message(String error, Date errorDate) {
         this.error = error;
-        this.errorCode = errorCode;
+        this.errorDate = errorDate;
     }
 
     @Override
     public String toString() {
         return "Message{" +
                 "\n\terror='" + error + ',' +
-                "\n\terrorCode='" + errorCode +
+                "\n\terrorDate='" + errorDate +
                 "\n" + '}';
     }
 }
