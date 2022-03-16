@@ -2,7 +2,6 @@ package com.example.calcDraft.controller;
 
 import com.example.calcDraft.model.Person;
 import com.example.calcDraft.service.api.PersonService;
-import org.hibernate.service.spi.ServiceException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -41,12 +40,12 @@ public class PersonController {
     }
 
     @GetMapping("/findByNationalCode")
-    public Person findByNationalCode(@RequestParam(required = false) String nationalCode){
+    public Person findByNationalCode(@RequestParam(required = false) String nationalCode) {
         return personService.getPersonByNationalCode(nationalCode);
     }
 
     @GetMapping("/getAllPerson")
-    public List<Person> getAllPerson(){
+    public List<Person> getAllPerson() {
         return personService.getPersonList();
     }
 }
